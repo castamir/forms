@@ -28,6 +28,8 @@ class SelectBox extends ChoiceControl
 	/** @var mixed */
 	private $prompt = FALSE;
 
+	private $doTranslateOptions = TRUE;
+
 
 	/**
 	 * Sets first prompt item in select box.
@@ -83,8 +85,14 @@ class SelectBox extends ChoiceControl
 	public function getControl()
 	{
 		$items = $this->prompt === FALSE ? array() : array('' => $this->translate($this->prompt));
-		foreach ($this->options as $key => $value) {
-			$items[is_array($value) ? $this->translate($key) : $key] = $this->translate($value);
+		if ($this->doTranslateOptions) {
+			foreach ($this->options as $key => $value) {
+				$items[is_array($value) ? $this->translate($key) : $key] = $this->translate($value);
+			}
+		} else {
+			foreach ($this->options as $key => $value) {
+				$items[$key] = $value;
+			}
 		}
 
 		return Nette\Forms\Helpers::createSelectBox(
@@ -107,6 +115,17 @@ class SelectBox extends ChoiceControl
 		if (!$this->isDisabled() && $this->prompt === FALSE && $this->getValue() === NULL && $this->options) {
 			$this->addError(Nette\Forms\Validator::$messages[self::VALID]);
 		}
+	}
+
+
+	/**
+	 * Allows to disable SelectBox option translation
+	 * @return $this
+	 */
+	public function doTranslateOptions($translateOptions = TRUE)
+	{
+		$this->doTranslateOptions = (bool) $translateOptions;
+		return $this;
 	}
 
 }
