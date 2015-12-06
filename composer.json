@@ -32,7 +32,7 @@
 		"classmap": ["src/"]
 	},
 	"replace": {
-		"nette/forms": "2.3.*"
+		"nette/forms": "2.*"
 	},
 	"minimum-stability": "dev"
 }
