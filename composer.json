@@ -1,5 +1,5 @@
 {
-	"name": "nette/forms",
+	"name": "castamir/forms",
 	"description": "Nette Forms: greatly facilitates web forms",
 	"homepage": "https://nette.org",
 	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
@@ -30,6 +30,9 @@
 	},
 	"autoload": {
 		"classmap": ["src/"]
+	},
+	"replace": {
+		"nette/forms": "2.3.*"
 	},
 	"minimum-stability": "dev"
 }
